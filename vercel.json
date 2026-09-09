@@ -1,7 +1,3 @@
 {
-  "version": 2,
-  "name": "meeting-intelligence-agent",
-  "framework": "nextjs",
-  "buildCommand": "next build frontend",
-  "outputDirectory": "frontend/.next"
+  "framework": "nextjs"
 }
