@@ -1,0 +1,122 @@
+"""
+Generate Dummy PDF Report for Meeting Intelligence Agent
+"""
+import os
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib import colors
+
+def generate_meeting_pdf(output_filename="sample_meeting_report.pdf"):
+    doc = SimpleDocTemplate(
+        output_filename,
+        pagesize=letter,
+        rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40
+    )
+    
+    styles = getSampleStyleSheet()
+    
+    title_style = ParagraphStyle(
+        'DocTitle',
+        parent=styles['Heading1'],
+        fontName='Helvetica-Bold',
+        fontSize=20,
+        leading=24,
+        textColor=colors.HexColor('#0F172A'),
+        spaceAfter=6
+    )
+    
+    subtitle_style = ParagraphStyle(
+        'DocSubtitle',
+        parent=styles['Normal'],
+        fontName='Helvetica',
+        fontSize=10,
+        leading=14,
+        textColor=colors.HexColor('#475569'),
+        spaceAfter=15
+    )
+
+    heading_style = ParagraphStyle(
+        'SectionHeading',
+        parent=styles['Heading2'],
+        fontName='Helvetica-Bold',
+        fontSize=12,
+        leading=16,
+        textColor=colors.HexColor('#4F46E5'),
+        spaceBefore=12,
+        spaceAfter=6
+    )
+
+    body_style = ParagraphStyle(
+        'BodyTextCustom',
+        parent=styles['Normal'],
+        fontName='Helvetica',
+        fontSize=9.5,
+        leading=14,
+        textColor=colors.HexColor('#1E293B')
+    )
+
+    story = []
+
+    # Title & Subtitle
+    story.append(Paragraph("Meeting Intelligence Agent", title_style))
+    story.append(Paragraph("Meeting Summary & Action Item Extraction Report &bull; Hostable on Vercel", subtitle_style))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F0'), spaceAfter=12))
+
+    # Meeting Info Table
+    meta_data = [
+        [Paragraph("<b>Meeting Title:</b>", body_style), Paragraph("Weekly Engineering & Product Sync", body_style)],
+        [Paragraph("<b>Date & Time:</b>", body_style), Paragraph("September 10, 2026 — 10:00 AM UTC", body_style)],
+        [Paragraph("<b>Participants:</b>", body_style), Paragraph("Alex Chen, Maya Lin, Marcus Vance", body_style)],
+        [Paragraph("<b>Status:</b>", body_style), Paragraph("<font color='#059669'><b>✓ Processed & Verified in Linear</b></font>", body_style)]
+    ]
+    meta_table = Table(meta_data, colWidths=[110, 420])
+    meta_table.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#F8FAFC')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#E2E8F0')),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#F1F5F9')),
+        ('TOPPADDING', (0,0), (-1,-1), 6),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+    ]))
+    story.append(meta_table)
+    story.append(Spacer(1, 10))
+
+    # Section 1: Fetched Transcript
+    story.append(Paragraph("1. Fetched Meeting Audio Transcript", heading_style))
+    transcript_text = """
+    <b>[00:12] Alex:</b> Welcome everyone. Let's cover our main priorities for this week.<br/>
+    <b>[00:45] Marcus:</b> I will configure the PostgreSQL database index by Friday so search runs fast.<br/>
+    <b>[01:20] Maya:</b> Sounds good. I will finish the task automation workflow today.<br/>
+    <b>[02:05] Alex:</b> Perfect. Let's make sure tickets are created and verified.
+    """
+    story.append(Paragraph(transcript_text, body_style))
+    story.append(Spacer(1, 10))
+
+    # Section 2: AI Extracted Action Items
+    story.append(Paragraph("2. AI Extracted Action Items", heading_style))
+    
+    tasks_data = [
+        [Paragraph("<b>Task Description</b>", body_style), Paragraph("<b>Assignee</b>", body_style), Paragraph("<b>Due Date</b>", body_style), Paragraph("<b>Linear Ticket ID</b>", body_style)],
+        [Paragraph("Configure PostgreSQL database index for fast search", body_style), Paragraph("Marcus", body_style), Paragraph("2026-09-12", body_style), Paragraph("<font color='#7C3AED'><b>LIN-2041</b></font>", body_style)],
+        [Paragraph("Complete 6-stage task automation workflow", body_style), Paragraph("Maya", body_style), Paragraph("2026-09-10", body_style), Paragraph("<font color='#7C3AED'><b>LIN-2042</b></font>", body_style)]
+    ]
+    tasks_table = Table(tasks_data, colWidths=[240, 80, 80, 130])
+    tasks_table.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#EEF2FF')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#C7D2FE')),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E0E7FF')),
+        ('TOPPADDING', (0,0), (-1,-1), 7),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 7),
+    ]))
+    story.append(tasks_table)
+    story.append(Spacer(1, 15))
+
+    # Footer Note
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F0'), spaceAfter=8))
+    story.append(Paragraph("<font color='#64748B'>Generated by Meeting Intelligence Agent &bull; Hostable on Vercel</font>", subtitle_style))
+
+    doc.build(story)
+    print(f"Successfully generated PDF: {output_filename}")
+
+if __name__ == "__main__":
+    generate_meeting_pdf()
