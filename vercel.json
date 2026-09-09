@@ -2,12 +2,6 @@
   "version": 2,
   "name": "meeting-intelligence-agent",
   "framework": "nextjs",
-  "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/.next",
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://meeting-intelligence-api.onrender.com/:path*"
-    }
-  ]
+  "buildCommand": "next build frontend",
+  "outputDirectory": "frontend/.next"
 }
