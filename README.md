@@ -1,18 +1,28 @@
-# Meeting Intelligence Agent (Beginner-Friendly Version)
+# Meeting Intelligence Agent (Unified Single-Deployment Version)
 
-> **A Simple, Easy-to-Understand AI Agent for Meeting Audio & Task Automation**
+> **Full-Stack Next.js Application with Built-in API Routes & Vercel Hosting**
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-The **Meeting Intelligence Agent** turns meeting audio into actionable tasks. It processes unstructured speech, extracts action items (Task, Assignee, Due Date), and creates tickets in your task management tool.
+The **Meeting Intelligence Agent** turns meeting audio & speech into verified task tickets. Both the web interface and the API backend are combined into **ONE single Next.js project** for instant, 1-click deployment on Vercel.
 
 ---
 
 ## 🎯 How It Works in 3 Simple Steps
 
-1. 🎙️ **Step 1: Audio Input**: Upload meeting audio or paste transcript text.
-2. 🧠 **Step 2: AI Task Extraction**: AI identifies tasks, owners, and due dates.
-3. 📝 **Step 3: Ticket Creation**: The agent creates and verifies task tickets in your task tool (e.g. Linear).
+1. 🎙️ **Step 1: Speech Transcript**: Input what people said in the meeting.
+2. 🧠 **Step 2: AI Reads Tasks**: AI identifies tasks, responsible person, and due date.
+3. 📝 **Step 3: Create Ticket**: Automatically creates and verifies task tickets in Linear.
+
+---
+
+## 🌐 Built-in API Routes (Single Deployment)
+
+No separate backend server needed! All API endpoints run directly inside Next.js:
+
+- `POST /api/extract-tasks`: Extracts action items from meeting transcripts.
+- `POST /api/create-ticket`: Creates and verifies Linear tickets.
+- `GET /api/download-pdf`: Serves meeting summary report.
 
 ---
 
@@ -20,40 +30,18 @@ The **Meeting Intelligence Agent** turns meeting audio into actionable tasks. It
 
 | Member ID | Role | Primary Focus | Assigned Lead |
 |---|---|---|---|
-| **Member 1** | Audio & Speech | Audio file ingestion and transcript formatting | `[ Unassigned ]` |
+| **Member 1** | Audio & Speech | Audio input and transcript formatting | `[ Unassigned ]` |
 | **Member 2** | AI Task Extractor | LLM prompt setup for task extraction | `[ Unassigned ]` |
-| **Member 3** | Data Storage | Saving meetings and tasks to database | `[ Unassigned ]` |
+| **Member 3** | Data Storage | Saving meetings and tasks to storage | `[ Unassigned ]` |
 | **Member 4** | Task Integration | Connecting to Linear task manager | `[ Unassigned ]` |
-| **Member 5** | Web Interface | Building simple light mode UI and Vercel hosting | `[ Unassigned ]` |
+| **Member 5** | Web Interface & API | Next.js UI, API routes, and Vercel hosting | `[ Unassigned ]` |
 
 ---
 
-## 🚀 Running the Project (Beginner Guide)
+## 🚀 One-Click Vercel Deployment
 
-### 1. Run the Python Backend
 ```bash
-cd backend
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
-```
-Open `http://localhost:8000/docs` in your browser to test the API endpoints directly!
-
-### 2. Run the Web Dashboard
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Open `http://localhost:3000` to interact with the beginner-friendly web UI.
-
----
-
-## 🌐 Deploy to Vercel
-Deploy the project to Vercel with a single command:
-```bash
+# Deploy to Vercel
 vercel
 ```
-Configured via `vercel.json`.
+Configured via `vercel.json` with standard Next.js App Router optimization.
