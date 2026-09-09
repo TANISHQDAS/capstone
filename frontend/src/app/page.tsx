@@ -205,7 +205,7 @@ export default function EasyBeginnerDashboard() {
         {/* Right Side: Dummy PDF & Simple Explanation Panel (4 Cols) */}
         <div className="md:col-span-4 space-y-4">
           
-          <!-- PDF Download Card -->
+          {/* PDF Download Card */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3 border-t-4 border-t-indigo-600">
             <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono flex items-center justify-between">
               <span>Fetched PDF Summary Report</span>
@@ -226,7 +226,7 @@ export default function EasyBeginnerDashboard() {
             </a>
           </div>
 
-          <!-- Easy Explanation Card -->
+          {/* Easy Explanation Card */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3">
             <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
               Simple Concept Summary
