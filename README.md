@@ -28,13 +28,12 @@ No separate backend server needed! All API endpoints run directly inside Next.js
 
 ## 👥 5-Person Team Work Division
 
-| Member ID | Role | Primary Focus | Assigned Lead |
 |---|---|---|---|
-| **Member 1** | Audio & Speech | Audio input and transcript formatting | `[ Unassigned ]` |
-| **Member 2** | AI Task Extractor | LLM prompt setup for task extraction | `[ Unassigned ]` |
-| **Member 3** | Data Storage | Saving meetings and tasks to storage | `[ Unassigned ]` |
-| **Member 4** | Task Integration | Connecting to Linear task manager | `[ Unassigned ]` |
-| **Member 5** | Web Interface & API | Next.js UI, API routes, and Vercel hosting | `[ Unassigned ]` |
+Audio & Speech | Audio input and transcript formatting | 
+AI Task Extractor | LLM prompt setup for task extraction | 
+Data Storage | Saving meetings and tasks to storage | 
+Task Integration | Connecting to Linear task manager | 
+Web Interface & API | Next.js UI, API routes, and Vercel hosting | 
 
 ---
 
