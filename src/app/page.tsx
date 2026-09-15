@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 export default function SingleDeploymentDashboard() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
   const [transcript, setTranscript] = useState(
     'Alex: Welcome everyone. Marcus, please configure the database search index by Friday. Maya, please finish the task automation workflow today.'
   );
@@ -45,6 +47,28 @@ export default function SingleDeploymentDashboard() {
     }
     setLoading(false);
     setStep(2);
+  };
+
+  const handleTranscriptUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+
+    setUploadError('');
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch('/api/extract-text', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Could not read this file.');
+      setTranscript(data.text);
+      setStep(1);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : 'Could not read this file.');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleCreateTicket = async (taskId: string, owner: string, dueDate: string) => {
@@ -157,6 +181,21 @@ export default function SingleDeploymentDashboard() {
               onChange={(e) => setTranscript(e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 focus:outline-none focus:border-orange-500 font-sans"
             />
+
+            <div className="flex flex-wrap items-center gap-3">
+              <label className="cursor-pointer bg-slate-900 hover:bg-slate-700 text-white font-semibold text-xs px-4 py-2.5 rounded-md shadow-sm transition-all">
+                {uploading ? 'Reading file...' : 'Upload PDF, transcript, or video'}
+                <input
+                  type="file"
+                  accept=".pdf,.txt,.md,.csv,.mp4,.webm,.mov,.m4v,text/plain,application/pdf,video/*"
+                  onChange={handleTranscriptUpload}
+                  disabled={uploading}
+                  className="sr-only"
+                />
+              </label>
+              <span className="text-xs text-slate-500">PDF, TXT, MD, CSV, MP4, WEBM, MOV, or M4V</span>
+              {uploadError && <span className="text-xs text-red-700" role="alert">{uploadError}</span>}
+            </div>
 
             <button
               onClick={handleExtractTasks}
