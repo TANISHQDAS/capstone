@@ -87,10 +87,8 @@ export default function SingleDeploymentDashboard() {
       {/* Header Bar */}
       <header className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center space-x-3">
-          <div className="bg-black text-white p-2 rounded-lg flex items-center justify-center">
-            <svg width="16" height="14" viewBox="0 0 76 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="white"/>
-            </svg>
+          <div className="bg-slate-900 text-white px-2.5 py-2 rounded-md flex items-center justify-center text-xs font-bold tracking-wide">
+            MI
           </div>
           <div>
             <h1 className="text-xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
@@ -108,7 +106,7 @@ export default function SingleDeploymentDashboard() {
             href="/api/download-pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs px-3.5 py-2 rounded-lg border border-indigo-200 shadow-sm transition-all flex items-center gap-1.5 font-mono"
+            className="bg-orange-50 hover:bg-orange-100 text-orange-700 font-bold text-xs px-3.5 py-2 rounded-md border border-orange-200 shadow-sm transition-all flex items-center gap-1.5 font-mono"
           >
             📄 Open Meeting Summary Report
           </a>
@@ -123,15 +121,15 @@ export default function SingleDeploymentDashboard() {
 
       {/* 3 Step Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
-        <div className={`p-4 rounded-xl border transition-all ${step >= 1 ? 'bg-white border-indigo-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
-          <div className="font-bold text-indigo-600 mb-1">1. Speech Transcript</div>
+        <div className={`p-4 rounded-md border transition-all ${step >= 1 ? 'bg-white border-orange-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+          <div className="font-bold text-orange-600 mb-1">1. Speech Transcript</div>
           <div className="text-slate-600">Provide what people said in meeting</div>
         </div>
-        <div className={`p-4 rounded-xl border transition-all ${step >= 2 ? 'bg-white border-indigo-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
-          <div className="font-bold text-indigo-600 mb-1">2. AI Reads Tasks</div>
+        <div className={`p-4 rounded-md border transition-all ${step >= 2 ? 'bg-white border-orange-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+          <div className="font-bold text-orange-600 mb-1">2. AI Reads Tasks</div>
           <div className="text-slate-600">Finds Task, Who does it & Due Date</div>
         </div>
-        <div className={`p-4 rounded-xl border transition-all ${tasks.some(t => t.status === 'created') ? 'bg-white border-emerald-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+        <div className={`p-4 rounded-md border transition-all ${tasks.some(t => t.status === 'created') ? 'bg-white border-emerald-400 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
           <div className="font-bold text-emerald-600 mb-1">3. Create Ticket</div>
           <div className="text-slate-600">Saves task ticket to Linear</div>
         </div>
@@ -147,7 +145,7 @@ export default function SingleDeploymentDashboard() {
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs flex items-center justify-center font-mono">1</span>
+                <span className="w-6 h-6 rounded-full bg-orange-100 text-orange-700 text-xs flex items-center justify-center font-mono">1</span>
                 What People Said in the Meeting
               </h2>
               <span className="text-xs text-slate-400 font-mono">Meeting Speech Text</span>
@@ -157,13 +155,13 @@ export default function SingleDeploymentDashboard() {
               rows={3}
               value={transcript}
               onChange={(e) => setTranscript(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-800 focus:outline-none focus:border-indigo-500 font-sans"
+              className="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 focus:outline-none focus:border-orange-500 font-sans"
             />
 
             <button
               onClick={handleExtractTasks}
               disabled={loading}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-2"
+              className="bg-orange-500 hover:bg-orange-600 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-md shadow-sm transition-all flex items-center gap-2"
             >
               {loading ? '⌛ Extracting Tasks via Next.js API...' : '🧠 Extract Action Items with AI'}
             </button>
@@ -171,10 +169,10 @@ export default function SingleDeploymentDashboard() {
 
           {/* STEP 2 & 3: Extracted Action Items */}
           {step >= 2 && (
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4 border-l-4 border-l-indigo-600">
+            <div className="bg-white border border-slate-200 rounded-md p-5 shadow-sm space-y-4 border-l-4 border-l-orange-500">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
                 <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs flex items-center justify-center font-mono">2</span>
+                  <span className="w-6 h-6 rounded-full bg-orange-100 text-orange-700 text-xs flex items-center justify-center font-mono">2</span>
                   Tasks Found by AI
                 </h2>
                 <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
@@ -189,14 +187,14 @@ export default function SingleDeploymentDashboard() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="font-bold text-sm text-slate-900">{item.task}</div>
                       {item.status === 'created' && (
-                        <span className="bg-purple-100 text-purple-800 border border-purple-200 text-xs font-mono font-bold px-2.5 py-0.5 rounded">
+                        <span className="bg-orange-100 text-orange-800 border border-orange-200 text-xs font-mono font-bold px-2.5 py-0.5 rounded">
                           {item.ticketId}
                         </span>
                       )}
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-600 bg-white p-2.5 rounded border border-slate-200">
-                      <div>Person Responsible: <strong className="text-indigo-700">{item.owner}</strong></div>
+                      <div>Person Responsible: <strong className="text-orange-700">{item.owner}</strong></div>
                       <div>Must finish by: <strong className="text-slate-800">{item.dueDate}</strong></div>
                     </div>
 
@@ -240,7 +238,7 @@ export default function SingleDeploymentDashboard() {
         {/* Right Side Explanation Panel (4 Cols) */}
         <div className="md:col-span-4 space-y-4">
           
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3 border-t-4 border-t-indigo-600">
+          <div className="bg-white border border-slate-200 rounded-md p-5 shadow-sm space-y-3 border-t-4 border-t-orange-500">
             <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
               Unified Single Deployment
             </h3>
@@ -250,7 +248,7 @@ export default function SingleDeploymentDashboard() {
             </p>
 
             <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs font-mono space-y-2 text-slate-700">
-              <div className="font-bold text-indigo-700">Built-in API Endpoints:</div>
+              <div className="font-bold text-orange-700">Built-in API Endpoints:</div>
               <ul className="list-disc list-inside space-y-1 text-slate-600 text-[11px]">
                 <li><code>/api/extract-tasks</code></li>
                 <li><code>/api/create-ticket</code></li>
