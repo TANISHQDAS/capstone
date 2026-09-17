@@ -28,9 +28,13 @@ No separate backend server needed! All API endpoints run directly inside Next.js
 
 
 Audio & Speech | Audio input and transcript formatting | 
+
 AI Task Extractor | LLM prompt setup for task extraction | 
+
 Data Storage | Saving meetings and tasks to storage | 
+
 Task Integration | Connecting to Linear task manager | 
+
 Web Interface & API | Next.js UI, API routes, and Vercel hosting | 
 
 ---
