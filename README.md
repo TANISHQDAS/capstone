@@ -26,9 +26,7 @@ No separate backend server needed! All API endpoints run directly inside Next.js
 
 ---
 
-## 👥 5-Person Team Work Division
 
-|---|---|---|---|
 Audio & Speech | Audio input and transcript formatting | 
 AI Task Extractor | LLM prompt setup for task extraction | 
 Data Storage | Saving meetings and tasks to storage | 
