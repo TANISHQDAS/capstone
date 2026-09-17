@@ -37,9 +37,7 @@ Task Integration | Connecting to Linear task manager |
 
 Web Interface & API | Next.js UI, API routes, and Vercel hosting | 
 
----
 
-## 🚀 One-Click Vercel Deployment
 
 ```bash
 # Deploy to Vercel
